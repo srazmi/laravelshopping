@@ -97,7 +97,7 @@ class UserController extends Controller
         //$form->logindate=time();
         //var_dump($form->name);die;
         $form->save();
-        return redirect ('ShowUsers')->with('success','OK!');
+        return redirect ('users/all')->with('success','OK!');
     }
 
     /**

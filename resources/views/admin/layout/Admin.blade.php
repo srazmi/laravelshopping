@@ -1,6 +1,6 @@
-
 @extends('admin.layout.MasterAdmin')
 @section('Mohtava')
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -21,7 +21,7 @@
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-  
+
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">

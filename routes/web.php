@@ -7,6 +7,7 @@ use App\Models\Kala;
 use App\Models\Baskets;
 
 
+
 // use App\Models\User;
 
 
@@ -26,23 +27,6 @@ use App\Models\Baskets;
 //     return view('welcome');
 // });
 
-Route::get('/users/all',function(){
-    return User::all();
-});
-
-Route::get('/users/update/{id}',function($id){
-    $user=User::find($id);
-    $user->name='akbar';
-    $user->email='akbar@gmail.com';
-    $user->save();
-});
-
-Route::get('/users/update/{id}',function($id){
-    $user=User::where('id',$id)->update([
-        'name'=>'akbar',
-        'email'=>'akbar@gmail.com',
-    ]);
-});
 
 Route::get('/users/delete/{id}',function($id){
     
@@ -205,35 +189,30 @@ Route::get('/checkout-step4',['as' => '/checkout-step3', 'uses' => 'BasketContro
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('/admin/products', 'Admin\ProductController');
 
 
-
-// Auth::routes();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::resource('/admin/users', 'Admin\UserController',['except'=>['show','create','store']]);
-
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
     Route::get('alluserdatatabels', 'UserController@alluserdatatabels')->name('users.alluserdatatabels');
     Route::resource('/users', 'UserController',['except'=>['show','create','store']]);
-    //  Route::resource('/products', 'ProductController');
-
-
+    
 });
+
+//==============================Admin Start============================================ 
+Route::get('/edit/{id}', 'Admin\UserController@edit');
+Route::get('/delete/{id}', 'Admin\UserController@destroy');
+Route::post('/update', 'Admin\UserController@updateusers'); 
+Route::get('/users/all', 'Admin\UserController@index');
 
 Route::get('/edit/{id}', 'Admin\ProductController@edit');
 Route::get('/update/{id}', 'Admin\ProductController@update');
 Route::get('/delete/{id}', 'Admin\ProductController@destroy');
-Route::get('/ShowUsers', 'Admin\UserController@index');
 Route::post('/update', 'Admin\ProductController@updateusers');
 
-Route::get('/edit/{id}', 'Admin\UserController@edit');
-Route::get('/delete/{id}', 'Admin\UserController@destroy');
-Route::post('/update', 'Admin\UserController@updateusers');
 Route::get('/showmobile','Admin\ProductController@show');
 Route::get('/ShowProducts','Admin\ProductController@showproduct'); 
 
@@ -241,7 +220,10 @@ Route::get('/editproduct/{id}', 'Admin\ProductController@edit');
 Route::get('/deleteproduct/{id}', 'Admin\ProductController@destroy');
 Route::get('/InsertProducts','Admin\ProductController@create'); 
 
+Route::get('/logout','Auth\LoginController@logout');
 
+
+//==========================Admin End===========================================
 
 
 

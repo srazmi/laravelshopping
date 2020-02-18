@@ -1,12 +1,11 @@
 @extends('admin.layout.MasterAdmin')
 @section('Mohtava')
 
-<div>
+<div class="showusers">
 <table class="table">
         <thead>List of Users</thead>
         <thead>
-            <tr>
-                
+            <tr>    
                 <td>ID</td>
                 <td>Name</td>
                 <td>Email</td>

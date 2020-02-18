@@ -117,11 +117,12 @@ class ProductController extends Controller
         ]);
         //$id= $request->id;
         $form= Kala::find($id);
-        $form->name=$request->post('name');
-        
+        $form->name=$request->post('name');    
         $form->description=$request->post('description');
         $form->categori_id=$request->post('category');
         $form->price=$request->post('price');
+        $form->number=$request->post('number');
+
 
         $form->save();
         return redirect ('ShowProducts')->with('success','OK!');

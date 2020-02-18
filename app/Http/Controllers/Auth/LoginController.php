@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -37,5 +38,31 @@ class LoginController extends Controller
     {
         
         $this->middleware('guest')->except('logout');
+        
+
     }
+
+    public function redirectTo()
+    {
+        // $user= User::find($id);
+
+        // dd (Auth::user()->rolles()->pluck('name')->contains('admin'));
+        // {
+        //     return view ('/login');
+        // }else{
+        //     return view('/welcome');
+        // }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
+    // public function login()
+    // {
+    //     // Auth::logout();
+    //     return view('auth.login');
+    // }
 }

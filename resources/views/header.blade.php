@@ -58,8 +58,8 @@
                 <div class="span7">
                     <a class="brand" href="/">
                         <img src="webmarket/images/logo.png" alt="Webmarket Logo" width="48" height="48" /> 
-                        <span class="pacifico">CheshmeSaran</span> 
-                        <span class="tagline">چشمه ساران</span> 
+                        <span class="pacifico">ImaPhone</span> 
+                        <span class="tagline">ایمافون</span> 
                     </a>
                 </div>
                 
@@ -103,12 +103,37 @@
                             <a href="#"><span class="zocial-windows"></span></a>
                             <a href="#"><span class="zocial-apple"></span></a> --}}
                         </div>
-                        <div class="register">
-                            <a href="#loginModal" role="button" data-toggle="modal">ورود</a> یا  
-                            <a href="#registerModal" role="button" data-toggle="modal">ثبت نام</a>
+                        
+                        @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('ورود') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('ثبت نام') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('خروج') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
+                    </li>
+                @endguest
                     </div>
-                </div> <!-- /social icons -->
+                </div>
             </div>
         </div>
     </header>

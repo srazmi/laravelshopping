@@ -323,18 +323,20 @@
                   <div class="carouFredSel" data-autoplay="false" data-nav="featuredItems">
                       <div class="slide">
                           <div class="row">
-                           
-                           
-                          
+                                                     
                         <table class="col-span-3">
-                            <tr>
-                                
-                           @foreach ($Temp['kala'] as $kala)
-                           <td >   
+                            <?php $kalas=$Temp['kala']; 
+                            // $count=count($kalas);
+                            ?>
+                            <tr>                            
+                           {{-- @for ($i=$j; $i<$count; $i++) --}}
+                           <td >
+                            @foreach($kalas as $kala) 
+
                           <!--  ==========  -->
                           <!--  = Product =  -->
                           <!--  ==========  -->
-                          <div class="span4">
+                          <div class="span4" style="display: flex; flex-wrap: wrap;">
                                 <div class="product">
                                     <div class="product-img featured">
                                         <div class="picture">
@@ -347,7 +349,7 @@
                                     </div>
                                     <div class="main-titles">
                                     <h4 class="title">{{$kala->price}}</h4>
-                                        <h5 class="no-margin">  {{$kala->name}}</h5>
+                                    <h5 class="no-margin">  {{$kala->name}}</h5>
                                     </div>
                                     <p class="desc"> {{$kala->description}}</p>
                                     <p class="center-align stars">
@@ -360,51 +362,21 @@
                                     </p>
                                 </div>
                               </div> <!-- /product -->
-                             
-                             
+                              {{-- @if($i%3==1) @break;
+                              
+                             @endif --}}
+                        @endforeach
+
                            </td>
-                           @endforeach  
+                           {{-- @endfor  --}}                         
                             </tr>
-                        </table>         
+                        </table> 
                            
         
                       </div>
                       <div class="slide">
                           <div class="row">
-                           
-                                      
-                          <!--  ==========  -->
-                          <!--  = Product =  -->
-                          <!--  ==========  -->
-                          <div class="span4">
-                              <div class="product">
-                                  <div class="product-img featured">
-                                      <div class="picture">
-                                          <img src="webmarket/images/dummy/featured-products/featured-1.png" alt="" width="518" height="358" />
-                                          <div class="img-overlay">
-                                              <a href="#" class="btn more btn-primary">توضیحات بیشتر</a>
-                                              <a href="#" class="btn buy btn-danger">خرید</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="main-titles">
-                                      <h4 class="title">$41</h4>
-                                      <h5 class="no-margin">محصول ویژه 515</h5>
-                                  </div>
-                                  <p class="desc">توضیحاتی که در مورد محصول لازم است را در اینجا مینویسید</p>
-                                  <p class="center-align stars">
-                                      <span class="icon-star stars-clr"></span>
-                                      <span class="icon-star stars-clr"></span>
-                                      <span class="icon-star stars-clr"></span>
-                                      <span class="icon-star stars-clr"></span>
-                                      <span class="icon-star stars-clr"></span>
-                                       
-                                  </p>
-                              </div>
-                            </div> <!-- /product -->
-                           
-                           
-                          
+                         
                            
                                       
                           <!--  ==========  -->

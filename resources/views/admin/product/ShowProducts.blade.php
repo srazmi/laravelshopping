@@ -1,7 +1,7 @@
 @extends('admin.layout.MasterAdmin')
 @section('Mohtava')
 
-<div>
+
         <table id="mytable" class="table table-bordred table-striped">
                    
                 <thead>
@@ -31,5 +31,5 @@
                 @endforeach
                 </tbody>
             </table>
-</div>
+
 @endsection

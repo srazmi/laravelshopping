@@ -2,11 +2,12 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="/logout" class="brand-link">
         <img src="Admin_Theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">پنل مدیریت</span>
+        <span class="brand-text font-weight-light">خروج از حساب کاربری </span>
       </a>
+     
   
       <!-- Sidebar -->
       <div class="sidebar">
@@ -17,7 +18,9 @@
               <img src="Admin_Theme/dist/img/1.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block">سمانه رزمی </a>
+
+            <a href="#" class="d-block">{{Auth::user()->name}}
+            </a>
             </div>
           </div>
   
@@ -36,7 +39,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/ShowUsers" class="nav-link">
+                    <a href="{{'/users/all'}}" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>نمایش کاربران</p>
                     </a>

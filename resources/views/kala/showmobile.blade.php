@@ -210,6 +210,7 @@
                             </thead>
                             <tbody>
                             @foreach($Temp['kala'] as $kala)
+                            
                                 <tr>
                                 <td><input type="checkbox" class="checkthis" /></td>
                                 {{-- <td>{{$kala->id}}</td> --}}
