@@ -3,11 +3,12 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="/logout" class="brand-link">
-        <img src="Admin_Theme/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{'Admin_Theme/dist/img/AdminLTELogo.png'}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">خروج از حساب کاربری </span>
       </a>
      
+      
   
       <!-- Sidebar -->
       <div class="sidebar">
@@ -15,8 +16,9 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="Admin_Theme/dist/img/1.jpg" class="img-circle elevation-2" alt="User Image">
+              <img src="" class="img-circle elevation-2" alt="User Image">
             </div>
+            
             <div class="info">
 
             <a href="#" class="d-block">{{Auth::user()->name}}
@@ -88,11 +90,40 @@
                   </ul>
                 </li>
               <li class="nav-item">
+                <li class="nav-item has-treeview menu-open">
+                  <a href="#" class="nav-link active">
+                    <i class="nav-icon fa fa-dashboard"></i>
+                    <p>
+                      مدیریت نظرات کاربران
+                      <i class="right fa fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="{{'/comments/user'}}" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>نمایش نظرات</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="./index2.html" class="nav-link">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>داشبورد دوم</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="./index3.html" class="nav-link active">
+                        <i class="fa fa-circle-o nav-icon"></i>
+                        <p>داشبورد سوم</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
                 <a href="pages/widgets.html" class="nav-link">
                   <i class="nav-icon fa fa-th"></i>
                   <p>
                     ویجت‌ها
-                    <span class="right badge badge-danger">جدید</span>
+                    {{-- <span class="right badge badge-danger">جدید</span> --}}
                   </p>
                 </a>
               </li>

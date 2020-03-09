@@ -1,7 +1,7 @@
 @extends('admin.layout.MasterAdmin')
 @section('Mohtava')
 
-<div class="showusers">
+<div>
 <table class="table">
         <thead>List of Users</thead>
         <thead>

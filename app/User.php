@@ -2,6 +2,10 @@
 
 namespace App;
 use App\Models\Roles;
+use App\Models\Comments;
+use App\Models\Kala;
+
+
 
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,6 +22,8 @@ class User extends Authenticatable
     use SoftDeletes;
 
     protected $data=['deleted_at'];
+    public $table= 'users';
+
 
     /**
      * The attributes that are mass assignable.
@@ -58,9 +64,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Kala::class, 'basket');
     }
 
-    public function Comment()
+    public function Comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Models\Comments');
     }
 
     public function Address()
@@ -82,4 +88,9 @@ class User extends Authenticatable
         }
 
     }
+
+    public function photos()
+    {    
+        return $this->morphMany('App\Models\Photos','imageable');
+   }
 }

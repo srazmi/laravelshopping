@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">
+                                    {{-- <a class="dropdown-item" href="{{ route('admin.users.index') }}">
                                         User Management
                                     </a>
                                         <a class="dropdown-item" href="{{ route('products.create')  }}">
@@ -66,7 +66,7 @@
                                         </a>
                                         <a class="dropdown-item" href="{{ route('products.index') }}">
                                         ویرایش و حذف محصولات
-                                        </a>
+                                        </a> --}}
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

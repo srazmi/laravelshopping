@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('master')
 
 @section('content')
 <div class="container">
@@ -61,13 +61,18 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="gender_id" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                             
                             <div class="col-md-6">
                                 <input type="text"  name="gender_id"  id="gender_id" />
                             </div>
-                        </div>
+                        </div> --}}
+                        <select name="gender_id" size="3">
+                            <option value="1">woman</option>
+                            <option value="2">man</option>
+                            
+                          </select>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\user;
-// use App\Models\Users;
 
 use Illuminate\Http\Request;
 use DataTables;
+
 
 class UserController extends Controller
 {
@@ -61,9 +61,16 @@ class UserController extends Controller
      * @param  \App\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(user $user)
+    public function show($id)
     {
-        //
+        $user=User::findOrFail($id);
+        $photos=$user->photos()->get();
+        return view('admin.layout.Sidebar_Admin')->with('photos',$photos);
+
+
+    // foreach($photos as $photo){
+    //    echo  $photo->path."<br>";
+    // }
     }
 
     /**

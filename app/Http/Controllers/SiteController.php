@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Users;
 use App\Models\Categori;
 use App\Models\Kala;
+use App\Models\Photos;
+
 
 
 
@@ -80,11 +82,18 @@ class SiteController extends Controller
 
     public function showproduct()
     {
-        $category=Categori::all();
-        $kalas=Kala::with('Categori')->get();
-        $Temp['category']=$category;
-        $Temp['kala']=$kalas;
-        return view('welcome')->with('Temp',$Temp);
+        
+        $kalas=Kala::with('photos')->get();
+        // $photos=$kalas->photos()->get();
+
+// dd($photos);
+        // foreach ($kalas as $kala){
+        //     dd($kala->photos()->get());
+        // }
+
+        // $Temps['photos']=$photos;
+        // $Temps['kala']=$kalas;
+        return view('welcome',compact('kalas',$kalas));
     }
 
 

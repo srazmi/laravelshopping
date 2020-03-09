@@ -18,6 +18,10 @@ class UsersController extends Controller
     {
         return view('users.register');        
     }
+    public function profile()
+    {
+        return view('users.profile');        
+    }
     public function update()
     {
         

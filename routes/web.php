@@ -1,7 +1,7 @@
 <?php
 
 use App\User;
-use App\Models\Comment;
+use App\Models\Comments;
 use App\Models\Roles;
 use App\Models\Kala;
 use App\Models\Baskets;
@@ -55,18 +55,20 @@ Route::get('/users/forcedelete/{id}',function($id){
 
 });
 
-Route::get('/comments/user',['middleware'=>'Role'],function(){
+Route::get('/comments/user',function(){
 
-    echo "<br>route is running";
+    // echo "<br>route is running";
 
-    // $comments= Comment::all();
-    // foreach($comments as $comment){
-    //     echo $comment->User['name'];
-    // }
+    $comments= Comments::all();
+    // echo $comments;
+    // dd($comments);die;
+    foreach($comments as $comment){
+        echo $comment->User['name'];
+    }
 
 });
 
-Route::get('/comments/{id}/user',function($id){
+Route::get('/comments/{id}/user',function($id){ 
 
    return User::find($id)->comments;
 
@@ -134,6 +136,16 @@ Route::get('/kala/{id}/faktorsync',function($id){
 
 });
 
+Route::get('/user/{id}/photos',function($id){
+
+    $user=User::findOrFail($id);
+    $photos=$user->photos()->get();
+
+    foreach($photos as $photo){
+       echo  $photo->path."<br>";
+    }
+});
+
 
 
 
@@ -158,6 +170,8 @@ Route::post('/validate',['as' => 'users.all', 'uses' =>'SiteController@validateu
 Route::get('/login',['as' => 'users.login', 'uses' => 'UsersController@login']);
 
 Route::get('/register',['as' => 'kala.category', 'uses' => 'UsersController@register']);
+
+Route::get('/profile',['as' => '/home', 'uses' => 'UsersController@profile']);
 
 Route::get('/showusers',['as' => 'users.showusers', 'uses' => 'SiteController@getall']);
 
@@ -184,43 +198,48 @@ Route::get('/checkout-step3',['as' => '/checkout-step2', 'uses' => 'BasketContro
 Route::get('/checkout-step4',['as' => '/checkout-step3', 'uses' => 'BasketController@checkoutstep4']);
 
 
+// Route::get("/Cregister","admin")
+// Route::get('/admin/dashboard', 'LoginController@redirectTo');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
 Route::resource('/admin/products', 'Admin\ProductController');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
+Route::get('/home', 'HomeController@index')->name('home')->middleware('role');
+Route::get('admin/home', 'HomeController@index')->name('home');
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('role')->group(function(){
 
     Route::get('alluserdatatabels', 'UserController@alluserdatatabels')->name('users.alluserdatatabels');
-    Route::resource('/users', 'UserController',['except'=>['show','create','store']]);
+    Route::resource('/users/all', 'UserController');
+    // Route::resource('/', 'ProductController');
     
 });
 
 //==============================Admin Start============================================ 
-Route::get('/edit/{id}', 'Admin\UserController@edit');
-Route::get('/delete/{id}', 'Admin\UserController@destroy');
-Route::post('/update', 'Admin\UserController@updateusers'); 
-Route::get('/users/all', 'Admin\UserController@index');
+Route::get('/edit/{id}', 'Admin\UserController@edit')->middleware('role');
+Route::get('/delete/{id}', 'Admin\UserController@destroy')->middleware('role');
+Route::post('/update', 'Admin\UserController@updateusers')->middleware('role'); 
+Route::get('/users/all', 'Admin\UserController@index')->middleware('role');
 
-Route::get('/edit/{id}', 'Admin\ProductController@edit');
-Route::get('/update/{id}', 'Admin\ProductController@update');
-Route::get('/delete/{id}', 'Admin\ProductController@destroy');
-Route::post('/update', 'Admin\ProductController@updateusers');
 
-Route::get('/showmobile','Admin\ProductController@show');
-Route::get('/ShowProducts','Admin\ProductController@showproduct'); 
+Route::get('/update/{id}', 'Admin\ProductController@update')->middleware('role');
+Route::get('/delete/{id}', 'Admin\ProductController@destroy')->middleware('role');
+// Route::post('/update', 'Admin\ProductController@updateusers');
+Route::get('/showmobile','Admin\ProductController@show')->middleware('role');
+Route::get('/ShowProducts','Admin\ProductController@showproduct')->middleware('role'); 
+Route::get('/editproduct/{id}', 'Admin\ProductController@edit')->middleware('role');
+Route::get('/deleteproduct/{id}', 'Admin\ProductController@destroy')->middleware('role');
+Route::get('/InsertProducts','Admin\ProductController@create')->middleware('role'); 
 
-Route::get('/editproduct/{id}', 'Admin\ProductController@edit');
-Route::get('/deleteproduct/{id}', 'Admin\ProductController@destroy');
-Route::get('/InsertProducts','Admin\ProductController@create'); 
+Route::get('/logout','Auth\LoginController@logout')->middleware('role');
+// Route::get('/login','Auth\LoginController@redirectTo');
 
-Route::get('/logout','Auth\LoginController@logout');
 
 
 //==========================Admin End===========================================

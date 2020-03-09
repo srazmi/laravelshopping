@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 use Auth;
+use App\User;
+use App\Models\Roles;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -41,18 +43,22 @@ class LoginController extends Controller
         
 
     }
-
-    public function redirectTo()
-    {
-        // $user= User::find($id);
-
-        // dd (Auth::user()->rolles()->pluck('name')->contains('admin'));
-        // {
-        //     return view ('/login');
-        // }else{
-        //     return view('/welcome');
-        // }
-    }
+//     public function redirectTo()
+//     {   
+//         // dd("ok");
+//         $id= auth()->user()->id;
+//         $user= User::find($id);
+//         foreach ($user->roles as $role)
+// // dd($role);
+//         if($role->name=='admin')
+//         {
+//             $this->redirectTo= '/login';
+//             return $this->redirectTo;
+//         }else{
+//             $this->redirectTo= '/';
+//             return $this->redirectTo;
+//         }
+//     }
 
     public function logout()
     {
@@ -60,9 +66,4 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    // public function login()
-    // {
-    //     // Auth::logout();
-    //     return view('auth.login');
-    // }
 }

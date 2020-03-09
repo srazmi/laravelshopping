@@ -38,6 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        // dd("ok");
         $this->middleware('guest');
     }
 
@@ -64,6 +65,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $user=new user;
+        // $user->name=$data["name"];
+
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

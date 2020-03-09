@@ -43,4 +43,9 @@ class Kala extends Model
     {
         return $this->hasMany('App\Models\Backed_Kala');
     }
+
+    public function photos()
+    {    
+        return $this->morphMany('App\Models\Photos','imageable');
+    }
 }
