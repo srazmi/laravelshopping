@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categori;
 use App\Models\Kala;
+use App\Models\Photos;
+
 
 
 class ProductController extends Controller
@@ -54,6 +56,7 @@ class ProductController extends Controller
             
         ]);
         $form= new Kala();
+        // dd($request);
         $form->name=$request->post('name');
         $form->description=$request->post('description');
         $form->categori_id=$request->post('category');
@@ -61,6 +64,15 @@ class ProductController extends Controller
         $form->number=$request->post('number');
         //var_dump($form->name);die;
         $form->save();
+        $id= $form->id;
+        // dd($id);
+        $photo= new Photos();
+        $photo->imageable_id=$id;
+        $photo->imageable_type='App\Models\Kala';
+        $photo->path='webmarket/images/dummy/products/'.$request->post('fileToUpload');
+        $photo->save();
+        // dd($photo);
+
         return redirect ('ShowProducts');
     }
 

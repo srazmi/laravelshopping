@@ -88,6 +88,21 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="Image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+    
+                                <div class="col-md-6">
+                                    Select image to upload:
+                                    <input id="fileToUpload" type="file" class="form-control @error('Image') is-invalid @enderror" name="fileToUpload" value="" required autocomplete="fileToUpload">
+                                    {{-- <input type="submit" value="Upload Image" name="submit"> --}}
+    
+                                    @error('Image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
     
     
                             <div class="form-group row mb-0">
