@@ -94,7 +94,6 @@
                                 <div class="col-md-6">
                                     Select image to upload:
                                     <input id="fileToUpload" type="file" class="form-control @error('Image') is-invalid @enderror" name="fileToUpload" value="" required autocomplete="fileToUpload">
-                                    {{-- <input type="submit" value="Upload Image" name="submit"> --}}
     
                                     @error('Image')
                                         <span class="invalid-feedback" role="alert">
